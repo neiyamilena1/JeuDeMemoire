@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffe599;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 60px;
+    background-color: #fff2cc;
+    border-radius: 5px;
+    gap: 30px;
+}
+
+h2 {
+    color: #ff4800;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.reset {
+    padding: 15px 20px;
+    color: #ff7300fb;
+    background-color: #fff;
+    border: none;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reset:focus {
+    color: #fff;
+    background-color: #ff7300fb;
+}
+
+.jeu {
+    width: 420px; /* Réduire la taille de la grille pour éviter le débordement */
+    height: 420px; /* Réduire la taille de la grille pour éviter le débordement */
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid #ff4800;
+    gap: 5px; /* Réduire l'espacement entre les éléments pour éviter le débordement */
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+    position: relative;
+    width: calc(20% - 10px); /* Taille réduite pour les éléments */
+    height: calc(20% - 10px); /* Taille réduite pour les éléments */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    transition: 0.25s;
+    transform: rotateY(180deg);
+    font-size: 0.8em; /* Réduire la taille de la police */
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ff7300fb;
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.boxOpen::after,
+.boxMatch::after {
+    transform: rotateY(180deg);
+}

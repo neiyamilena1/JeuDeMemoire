@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titre du document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Jeu de mémoire</h2>
+        <div class="jeu"></div>
+        <button class="reset" onclick="window.location.reload();">Réinitialiser le jeu</button>
+    </div>
+    <script>
+        const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
+        var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
+        for (var i = 0; i < naruto.length; i++) {
+            let box = document.createElement('div');
+            box.className = 'item';
+            let span = document.createElement('span');
+            span.className = 'item-text';
+            span.innerHTML = naruto[i];
+            box.appendChild(span);
+
+            box.onclick = function () {
+                box.classList.add('boxOpen');
+                setTimeout(function () {
+                    if (document.querySelectorAll('.boxOpen').length > 1) {
+                        if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
+                            document.querySelectorAll('.boxOpen').forEach(element => {
+                                element.classList.remove('boxOpen');
+                                element.classList.add('boxMatch');
+                            });
+                            if (document.querySelectorAll('.boxMatch').length == naruto.length) {
+                                alert('Bravo vous avez gagné');
+                            }
+                        } else {
+                            setTimeout(function () {
+                                document.querySelectorAll('.boxOpen').forEach(element => {
+                                    element.classList.remove('boxOpen');
+                                });
+                            }, 500);
+                        }
+                    }
+                }, 500);
+            }
+            document.querySelector('.jeu').appendChild(box);
+        }
+    </script>
+</body>
+
+</html>
