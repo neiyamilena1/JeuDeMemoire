@@ -33,8 +33,6 @@
                     box.classList.add('boxOpen');
                     setTimeout(function () {
                         if (document.querySelectorAll('.boxOpen').length > 1) {
-                            nombreEssai--; // Décrémentation du nombre d'essais à chaque paire de cartes retournées
-                            document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
                             if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
                                 document.querySelectorAll('.boxOpen').forEach(element => {
                                     element.classList.remove('boxOpen');
@@ -45,6 +43,8 @@
                                     window.location.reload();
                                 }
                             } else {
+                                nombreEssai--; // Décrémentation du nombre d'essais uniquement si les boîtes ne correspondent pas
+                                document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
                                 setTimeout(function () {
                                     document.querySelectorAll('.boxOpen').forEach(element => {
                                         element.classList.remove('boxOpen');
