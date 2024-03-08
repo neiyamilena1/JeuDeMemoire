@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <div class="essai">Nombre d'essai : <span id="nombreEssai">0</span></div> <!-- Ajout de la div pour afficher le nombre d'essais -->
+    <div class="essai">Nombre d'essai : <span id="nombreEssai">10</span></div> <!-- Ajout de la div pour afficher le nombre d'essais -->
     <div class="container">
         <h2>Jeu de mémoire</h2>
         <div class="jeu"></div>
         <button class="reset" onclick="window.location.reload();">Réinitialiser le jeu</button>
     </div>
     <script>
-        let nombreEssai = 0; // Initialisation du nombre d'essais
+        let nombreEssai = 10; // Initialisation du nombre d'essais
 
         const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
         var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
@@ -29,28 +29,35 @@
             box.appendChild(span);
 
             box.onclick = function () {
-                box.classList.add('boxOpen');
-                setTimeout(function () {
-                    if (document.querySelectorAll('.boxOpen').length > 1) {
-                        nombreEssai++; // Incrémentation du nombre d'essais à chaque paire de cartes retournées
-                        document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
-                        if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
-                            document.querySelectorAll('.boxOpen').forEach(element => {
-                                element.classList.remove('boxOpen');
-                                element.classList.add('boxMatch');
-                            });
-                            if (document.querySelectorAll('.boxMatch').length == naruto.length) {
-                                alert('Bravo vous avez gagné');
-                            }
-                        } else {
-                            setTimeout(function () {
+                if (nombreEssai > 0) { // Vérifier si le nombre d'essais restants est supérieur à zéro
+                    box.classList.add('boxOpen');
+                    setTimeout(function () {
+                        if (document.querySelectorAll('.boxOpen').length > 1) {
+                            nombreEssai--; // Décrémentation du nombre d'essais à chaque paire de cartes retournées
+                            document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
+                            if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
                                 document.querySelectorAll('.boxOpen').forEach(element => {
                                     element.classList.remove('boxOpen');
+                                    element.classList.add('boxMatch');
                                 });
-                            }, 500);
+                                if (document.querySelectorAll('.boxMatch').length == naruto.length) {
+                                    alert('Bravo vous avez gagné');
+                                    window.location.reload();
+                                }
+                            } else {
+                                setTimeout(function () {
+                                    document.querySelectorAll('.boxOpen').forEach(element => {
+                                        element.classList.remove('boxOpen');
+                                    });
+                                }, 500);
+                            }
                         }
-                    }
-                }, 500);
+                    }, 500);
+                }
+                if (nombreEssai === 0) { // Vérifier si le nombre d'essais restants est égal à zéro
+                    alert('Vous avez perdu');
+                    window.location.reload(); // Recharger la page pour recommencer le jeu
+                }
             }
             document.querySelector('.jeu').appendChild(box);
         }
