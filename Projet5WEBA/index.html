@@ -11,10 +11,13 @@
 <body>
     <div class="container">
         <h2>Jeu de mémoire</h2>
+        <div class="essai">Nombre d'essai : <span id="nombreEssai">0</span></div> <!-- Ajout de la div pour afficher le nombre d'essais -->
         <div class="jeu"></div>
         <button class="reset" onclick="window.location.reload();">Réinitialiser le jeu</button>
     </div>
     <script>
+        let nombreEssai = 0; // Initialisation du nombre d'essais
+
         const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
         var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
         for (var i = 0; i < naruto.length; i++) {
@@ -29,6 +32,8 @@
                 box.classList.add('boxOpen');
                 setTimeout(function () {
                     if (document.querySelectorAll('.boxOpen').length > 1) {
+                        nombreEssai++; // Incrémentation du nombre d'essais à chaque paire de cartes retournées
+                        document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
                         if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
                             document.querySelectorAll('.boxOpen').forEach(element => {
                                 element.classList.remove('boxOpen');
