@@ -9,14 +9,15 @@
 </head>
 
 <body>
-    <div class="essai">Nombre d'essai : <span id="nombreEssai">10</span></div> <!-- Ajout de la div pour afficher le nombre d'essais -->
+    <div class="essai">Nombre d'essai : <span id="nombreEssai">13</span></div>
+    <!-- Ajout de la div pour afficher le nombre d'essais -->
     <div class="container">
         <h2>Jeu de mémoire</h2>
         <div class="jeu"></div>
         <button class="reset" onclick="window.location.reload();">Réinitialiser le jeu</button>
     </div>
     <script>
-        let nombreEssai = 10; // Initialisation du nombre d'essais
+        let nombreEssai = 13; // Initialisation du nombre d'essais
 
         const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
         var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
