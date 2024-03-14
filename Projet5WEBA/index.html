@@ -20,7 +20,7 @@
         let nombreEssai = 13; // Initialisation du nombre d'essais
 
         const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
-        var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
+        let shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
         for (var i = 0; i < naruto.length; i++) {
             let box = document.createElement('div');
             box.className = 'item';
