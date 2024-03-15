@@ -11,9 +11,9 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #ffe599;
-    background-image: url('Naruto_logo.svg.png');
-    background-size: 500px 500px;
-    background-repeat: no-repeat;
+    background-image: url('naruto-gif.gif');
+    background-size: cover;
+    background-repeat: repeat;
 }
 
 .container {

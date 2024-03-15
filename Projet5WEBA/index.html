@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titre du document</title>
+    <title>Jeu de mémoire - Naruto</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -34,16 +34,23 @@
             // Ajout du span à la boîte
             box.appendChild(span);
 
+            // Ajout de l'événement onclick à la boîte
             box.onclick = function () {
                 if (nombreEssai > 0) { // Vérifier si le nombre d'essais restants est supérieur à zéro
+                    // Vérifier si la boîte est déjà ouverte ou si elle correspond à une boîte déjà ouverte
                     box.classList.add('boxOpen');
+                    // Vérifier si deux boîtes sont ouvertes
                     setTimeout(function () {
+                        // Vérifier si deux boîtes sont ouvertes
                         if (document.querySelectorAll('.boxOpen').length > 1) {
+                            // Vérifier si les boîtes ouvertes correspondent
                             if (document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML) {
+                                // Supprimer la classe boxOpen et ajouter la classe boxMatch si les boîtes correspondent
                                 document.querySelectorAll('.boxOpen').forEach(element => {
                                     element.classList.remove('boxOpen');
                                     element.classList.add('boxMatch');
                                 });
+                                // Vérifier si toutes les boîtes correspondent
                                 if (document.querySelectorAll('.boxMatch').length == naruto.length) {
                                     alert('Bravo vous avez gagné');
                                     window.location.reload();
@@ -51,14 +58,15 @@
                             } else {
                                 nombreEssai--; // Décrémentation du nombre d'essais uniquement si les boîtes ne correspondent pas
                                 document.getElementById('nombreEssai').innerText = nombreEssai; // Mise à jour de l'affichage du nombre d'essais
+                                //Les cartes sont retournées à leur état initial après un délai de 350 millisecondes.
                                 setTimeout(function () {
                                     document.querySelectorAll('.boxOpen').forEach(element => {
                                         element.classList.remove('boxOpen');
                                     });
-                                }, 500);
+                                }, 350);
                             }
                         }
-                    }, 500);
+                    }, 350);
                 }
                 if (nombreEssai === 0) { // Vérifier si le nombre d'essais restants est égal à zéro
                     alert('Vous avez perdu');
