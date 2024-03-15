@@ -20,13 +20,9 @@
         let nombreEssai = 13; // Initialisation du nombre d'essais
 
         const naruto = ["naruto", "naruto", "sasuke", "sasuke", "sakura", "sakura", "pain", "pain", "obito", "obito", "itachi", "itachi", "kakashi", "kakashi", "tsunade", "tsunade"];
-<<<<<<< Updated upstream
-        let shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
-=======
         // trier le tableau de manière aléatoire
-        var shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
+        let shuf_naruto = naruto.sort(() => Math.random() > .5 ? 2 : -1);
         // Création des boîtes pour chaque élément du tableau
->>>>>>> Stashed changes
         for (var i = 0; i < naruto.length; i++) {
             // Création de la boîte
             let box = document.createElement('div');
